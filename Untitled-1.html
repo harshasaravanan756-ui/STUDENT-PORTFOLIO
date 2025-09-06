@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Modular Portfolio with Color Switch</title>
+  <style>
+    :root {
+      /* Default (light) theme variables */
+      --bg: #eaeceb73;
+      --text: #333;
+      --accent: #048367be;
+      --transition: 0.3s;
+    }
+    [data-theme="dark"] {
+      --bg: #9f84a0d8;
+      --text: #ecf0f1;
+      --accent: #e74c3c;
+    }
+    [data-theme="playful"] {
+      --bg: #fff5e6;
+      --text: #4b3832;
+      --accent: #ff7f50;
+    }
+
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      transition: background var(--transition), color var(--transition);
+    }
+    header, footer {
+      background: var(--accent);
+      color: white;
+      text-align: center;
+      padding: 1.5rem;
+      transition: background var(--transition);
+    }
+    nav {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .project {
+      max-width: 800px;
+      margin: 1rem auto;
+      padding: 1rem;
+      border: 2px solid var(--accent);
+      border-radius: 8px;
+      transition: border-color var(--transition);
+    }
+    .controls {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin: 1rem 0;
+    }
+    .controls button, .controls input[type="color"] {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: opacity var(--transition);
+    }
+    .controls button:hover {
+      opacity: 0.8;
+    }
+    input[type="color"] {
+      width: 2.5rem;
+      height: 2.5rem;
+      padding: 0;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>HARSHAVARDHINI</h1>
+    <p>Designer • Developer • Creator</p>
+  </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="about" class="project">
+    <h2>About Me</h2>
+    <p>Department of Computer Applications</p>
+  </section>
+
+  <section id="projects" class="project">
+    <h2>Projects</h2>
+    <p>Digital Portfolio/Student Portfolio.</p>
+  </section>
+
+  <section id="contact" class="project">
+    <h2>Contact</h2>
+    <p>Email: <a href="mailto:you@example.com">harsha@example.com</a></p>
+  </section>
+
+  <footer>
+    <div class="controls">
+      <label>
+        Choose Accent:
+        <input type="color" id="colorPicker" value="#3498db">
+      </label>
+      <button data-theme="light">Light Theme</button>
+      <button data-theme="dark">Dark Theme</button>
+      <button data-theme="playful">Playful Theme</button>
+    </div>
+    <p>© 2025 Your Name</p>
+  </footer>
+
+  <script>
+    const colorPicker = document.getElementById('colorPicker');
+    colorPicker.addEventListener('input', e => {
+      document.documentElement.style.setProperty('--accent', e.target.value);
+    });
+
+    document.querySelectorAll('button[data-theme]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.documentElement.setAttribute('data-theme', btn.dataset.theme);
+      });
+    });
+  </script>
+
+</body>
+</html>
